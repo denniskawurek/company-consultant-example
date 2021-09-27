@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/company_consultant_example
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+    default-auto-commit: false
+    tomcat:
+      initial-size: 5
+    hikari:
+      max-lifetime: 580000
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        temp.use_jdbc_metadata_defaults: false
+        jdbc:
+          time_zone: UTC
+    profiles:
+      active: prod
+    hibernate.ddl-auto: update
+  h2:
+    console:
+      enabled: true
+# Server port
+server:
+  port: 8080
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v1
+log4j2.contextSelector: org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+# set logging timestamp to UTC
+logging.pattern.dateformat: ISO8601,/UTC
+#logging:
+#  level:
+#    org.hibernate.SQL: debug                                                       # show SQL statements
+#    org.hibernate.type.descriptor.sql.BasicBinder: trace                           # show bind parameters
+#    org.hibernate.metamodel.model.convert.internal.NamedEnumValueConverter: trace  # show bound enum parameters
+#    org.hibernate.type.descriptor.sql.BasicExtractor: trace                        # show result values
+#    log4j.category.org.springframework.jdbc.core: TRACE
